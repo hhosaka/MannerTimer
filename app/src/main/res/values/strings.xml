@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">マナータイマー</string>
+    <string name="title_activity_settings">設定</string>
+    <string name="title_activity_webview">ヘルプ</string>
+    <string name="action_settings">設定</string>
+    <string name="action_help">ヘルプ</string>
+    <string name="action_change_background">背景の変更</string>
+    <string name="label_smart_timer_deactivating">"タップしてマナー"</string>
+    <string name="label_smart_timer_in_manner_vibration">"バイブレーションモード"</string>
+    <string name="label_smart_timer_in_manner_silent">"サイレントモード"</string>
+    <string name="label_smart_timer_deactivate">"キャンセル"</string>
+    <string name="label_smart_timer_option30">"30分後"</string>
+    <string name="label_smart_timer_option60">"１時間後"</string>
+    <string name="label_smart_timer_option90">"１時間半後"</string>
+    <string name="label_smart_timer_option120">"２時間後"</string>
+    <string name="label_smart_timer_option180">"３時間後"</string>
+    <string name="label_smart_timer_option240">"４時間後"</string>
+    <string name="label_smart_timer_prefix">""</string>
+    <string name="label_smart_timer_postfix">"に復帰します。"</string>
+    <string name="label_default_manner_mode">サイレントモードに設定</string>
+    <string name="label_ignore_silent">サイレントモードにしない</string>
+    <string name="label_manner_vibrate">バイブレーション</string>
+    <string name="label_manner_silent">サイレント</string>
+    <string name="label_manner_mode">マナーモードの設定</string>
+    <string name="label_confirm_already_on_manner">マナーモードの時、確認する</string>
+    <string name="confirmation_label_execute">"実行"</string>
+    <string name="confirmation_label_cancel">"中止"</string>
+    <string name="confirmation_title">"確認"</string>
+    <string name="confirmation_message">"既にマナーモードですが、設定を続けますか？"</string>
+    <string name="title_activity_timer_selector_parent">TimerSelectorParentActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
