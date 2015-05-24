@@ -13,6 +13,6 @@ public class TimerSelectorParentActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		View v=new View(this);
 		setContentView(v);
-		new TimerSelector(this).showDialog(v,this);
+		new TimerSelector(this).showDialog(v, this, null);
 	}
 }

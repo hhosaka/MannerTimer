@@ -49,20 +49,22 @@ public class MainActivity extends Activity {
 		return this;
 	}
 
+	private int getMannerModeId(){
+		switch(AppPreference.loadMannerMode(this)){
+			case AudioManager.RINGER_MODE_SILENT:
+				return R.id.radioMannerModeSilent;
+			case AudioManager.RINGER_MODE_VIBRATE:
+				if(AppPreference.loadIsIgnoreSilent(this)) {
+					return R.id.radioMannerModeVibrateNoSilent;
+				}else{
+					return R.id.radioMannerModeVibrate;
+				}
+		}
+		throw new UnsupportedOperationException();
+	}
+
 	private void init() {
-		setIsIgnoreSilent(AppPreference.loadIsIgnoreSilent(this));
-		setMannerMode(AppPreference.loadMannerMode(this));
-		((CheckBox)findViewById(R.id.checkBoxIgnoreSilentMode))
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						if (isChecked && AppPreference.loadMannerMode(getContext()) == AudioManager.RINGER_MODE_SILENT) {
-							setMannerMode(AudioManager.RINGER_MODE_VIBRATE);
-							AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_VIBRATE);
-						}
-						AppPreference.saveIsIgnoreSilent(getContext(), isChecked);
-					}
-				});
+		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting)).check(getMannerModeId());
 		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting))
 				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 					@Override
@@ -70,27 +72,23 @@ public class MainActivity extends Activity {
 						switch (id) {
 							case R.id.radioMannerModeVibrate:
 								AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_VIBRATE);
+								AppPreference.saveIsIgnoreSilent(getContext(), false);
+								break;
+							case R.id.radioMannerModeVibrateNoSilent:
+								AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_VIBRATE);
+								AppPreference.saveIsIgnoreSilent(getContext(), true);
+								if(Executor.getRingerMode(MainActivity.this)==AudioManager.RINGER_MODE_SILENT){
+									Executor.setRingerMode(MainActivity.this, AudioManager.RINGER_MODE_VIBRATE);
+								}
 								break;
 							case R.id.radioMannerModeSilent:
 								AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_SILENT);
-								if (AppPreference.loadIsIgnoreSilent(getContext())) {
-									AppPreference.saveIsIgnoreSilent(getContext(), false);
-									setIsIgnoreSilent(false);
-								}
+								AppPreference.saveIsIgnoreSilent(getContext(), false);
 								break;
 							default:
 								assert (false);
 								break;
 						}
-					}
-				});
-
-		setIsConfirmAlreadyOnManner(AppPreference.loadIsConfirmAlreadyOnManner(this));
-		((CheckBox)findViewById(R.id.CheckBoxIsConfirmAlreadyOnManner))
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						AppPreference.saveIsConfirmAlreadyOnManner(getContext(), isChecked);
 					}
 				});
 	}
@@ -102,21 +100,6 @@ public class MainActivity extends Activity {
 			unregisterReceiver(status_monitor);
 			status_monitor =null;
 		}
-	}
-
-	private void setMannerMode(int value){
-		assert(value==AudioManager.RINGER_MODE_VIBRATE||value==AudioManager.RINGER_MODE_SILENT);
-		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting))
-				.check(value==AudioManager.RINGER_MODE_VIBRATE?
-						R.id.radioMannerModeVibrate:R.id.radioMannerModeSilent);
-	}
-
-	private void setIsIgnoreSilent(boolean value){
-		((CheckBox)findViewById(R.id.checkBoxIgnoreSilentMode)).setChecked(value);
-	}
-
-	private void setIsConfirmAlreadyOnManner(boolean value){
-		((CheckBox)findViewById(R.id.CheckBoxIsConfirmAlreadyOnManner)).setChecked(value);
 	}
 
     @Override

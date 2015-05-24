@@ -10,17 +10,19 @@
         android:id="@+id/textViewMannerMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/label_manner_mode" />
+        android:text="@string/label_manner_mode"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/buttonSelect"
+        android:layout_marginTop="55dp"/>
 
     <RadioGroup
         android:id="@+id/radioGroupMannerModeSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewMannerMode"
+        android:background="@drawable/background_show_dialog_button"
         android:layout_below="@+id/textViewMannerMode"
-        android:layout_marginTop="15dp" >
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp">
 
         <RadioButton
             android:id="@+id/radioMannerModeVibrate"
@@ -30,36 +32,24 @@
             android:text="@string/label_manner_vibrate" />
 
         <RadioButton
+            android:id="@+id/radioMannerModeVibrateNoSilent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_manner_vibrate_no_silent" />
+
+        <RadioButton
             android:id="@+id/radioMannerModeSilent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_manner_silent" />
     </RadioGroup>
 
-    <CheckBox
-        android:id="@+id/checkBoxIgnoreSilentMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/radioGroupMannerModeSetting"
-        android:layout_below="@+id/radioGroupMannerModeSetting"
-        android:layout_marginTop="36dp"
-        android:text="@string/label_ignore_silent" />
-
-    <CheckBox
-        android:id="@+id/CheckBoxIsConfirmAlreadyOnManner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBoxIgnoreSilentMode"
-        android:layout_below="@+id/checkBoxIgnoreSilentMode"
-        android:layout_marginTop="36dp"
-        android:text="@string/label_confirm_already_on_manner" />
-
     <Button
         android:id="@+id/buttonSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="34dp"
-        android:background="@drawable/btn_0002"
+        android:background="@drawable/background_show_dialog_button"
         android:text="@string/label_smart_timer_in_manner_silent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>

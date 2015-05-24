@@ -11,9 +11,11 @@ import android.media.AudioManager;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 
 class TimerSelector implements OnClickListener {
 
+	private final LabelImpl[] labels;
 	private static class LabelImpl implements CharSequence{
 		private String label;
 		private int value;
@@ -59,8 +61,6 @@ class TimerSelector implements OnClickListener {
 		}
 	}
 
-	private final LabelImpl[] labels;
-
 	public TimerSelector(Context context) {
 		final LabelImpl[] labels = {
 				new LabelImpl(context.getString(R.string.label_smart_timer_deactivate),0),
@@ -93,7 +93,7 @@ class TimerSelector implements OnClickListener {
 		}
 	}
 
-	public void showDialog(final View v, final Activity activity) {
+	public void showDialog(final View v, final Activity activity, final Button button) {
 		final Context context = v.getContext();
 		new AlertDialog.Builder(context)
 				.setTitle(context.getString(R.string.confirmation_title))
@@ -101,6 +101,7 @@ class TimerSelector implements OnClickListener {
 					@Override
 					public void onCancel(DialogInterface dialog) {
 						if (activity != null) activity.finish();
+						if(button!=null)button.setText(getLabel(context));
 					}
 				})
 				.setSingleChoiceItems(labels, getCurrentItem(context)
@@ -110,6 +111,7 @@ class TimerSelector implements OnClickListener {
 						execute(context, labels[which].getValue());
 						dialog.dismiss();
 						if (activity != null) activity.finish();
+						if(button!=null)button.setText(getLabel(context));
 					}
 				}).create().show();
 	}
@@ -119,7 +121,8 @@ class TimerSelector implements OnClickListener {
 			Executor.stop(context);
 		}else{
 			Calendar c = Calendar.getInstance();
-			c.add(Calendar.MINUTE, value);
+			//c.add(Calendar.MINUTE, value);
+			c.add(Calendar.SECOND, value);// for test
 			long time = c.getTimeInMillis();
 			((AudioManager)context.getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AppPreference.loadMannerMode(context));
 			Executor.start(context, AppPreference.loadMannerMode(context), time);
@@ -128,6 +131,6 @@ class TimerSelector implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		showDialog(v, null);
+		showDialog(v, null,(Button)v);
 	}
 }

@@ -22,6 +22,7 @@
     <string name="label_default_manner_mode">サイレントモードに設定</string>
     <string name="label_ignore_silent">サイレントモードにしない</string>
     <string name="label_manner_vibrate">バイブレーション</string>
+    <string name="label_manner_vibrate_no_silent">バイブレーション\r\n(サイレントにしない)</string>
     <string name="label_manner_silent">サイレント</string>
     <string name="label_manner_mode">マナーモードの設定</string>
     <string name="label_confirm_already_on_manner">マナーモードの時、確認する</string>

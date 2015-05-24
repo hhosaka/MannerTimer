@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+    android:id="@+id/widgetBase"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonWidget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/textViewWidget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/background_label_home"
         android:text="@string/app_name" />
 
 </LinearLayout>
