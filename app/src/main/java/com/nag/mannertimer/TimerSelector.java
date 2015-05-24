@@ -93,6 +93,25 @@ class TimerSelector implements OnClickListener {
 		}
 	}
 
+	public static String getShortLabel(Context context) {
+		long t = AppPreference.loadRegisteredTime(context);
+		if (t == 0) {
+			int mode = Executor.getRingerMode(context);
+			switch (mode) {
+				case AudioManager.RINGER_MODE_NORMAL:
+					return context.getString(R.string.label_short_smart_timer_deactivating);
+				case AudioManager.RINGER_MODE_VIBRATE:
+					return context.getString(R.string.label_short_smart_timer_in_manner_vibration);
+				case AudioManager.RINGER_MODE_SILENT:
+					return context.getString(R.string.label_short_smart_timer_in_manner_silent);
+				default:
+					throw new RuntimeException();
+			}
+		} else {
+			return DateFormat.format("kk:mm:ss", t).toString();
+		}
+	}
+
 	public void showDialog(final View v, final Activity activity, final Button button) {
 		final Context context = v.getContext();
 		new AlertDialog.Builder(context)

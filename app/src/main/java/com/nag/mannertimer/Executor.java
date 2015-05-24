@@ -35,6 +35,7 @@ public class Executor extends BroadcastReceiver {
 		setRingerMode(context, mode);
 		getManager(context).set(AlarmManager.RTC_WAKEUP, time, getIntent(context));
 		showNotify(context, TimerSelector.getLabel(context));
+		WidgetProviderImpl.updateWidget(context);
 	}
 
 	private static void showNotify(Context context, String subject){
@@ -62,6 +63,7 @@ public class Executor extends BroadcastReceiver {
 		}
 		getManager(context).cancel(getIntent(context));
 		cancelNotify(context);
+		WidgetProviderImpl.updateWidget(context);
 	}
 
 	public static void update(Context context, int mode){

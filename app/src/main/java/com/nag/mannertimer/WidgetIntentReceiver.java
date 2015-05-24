@@ -9,8 +9,4 @@ public class WidgetIntentReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 		WidgetProviderImpl.handleReceive(context, intent);
     }
-    
-//	private void showDialog(Context context){
-//		context.startActivity(new Intent(context, MainActivity.class));
-//	}
 }
