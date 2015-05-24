@@ -2,34 +2,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_gravity="center_vertical"
+    android:layout_gravity="center_vertical|center_horizontal"
     android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/ppg_gyoushisuruneko500"
     tools:context=".MainActivity" >
-
-    <TextView
-        android:id="@+id/textViewMannerMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_manner_mode"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/buttonSelect"
-        android:layout_marginTop="55dp"/>
 
     <RadioGroup
         android:id="@+id/radioGroupMannerModeSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_show_dialog_button"
-        android:layout_below="@+id/textViewMannerMode"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp">
+        android:background="@drawable/background_radio_group"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
+        <TextView
+            android:id="@+id/textViewMannerMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_manner_mode"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
         <RadioButton
             android:id="@+id/radioMannerModeVibrate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/label_manner_vibrate" />
+            android:text="@string/label_manner_vibrate"
+            />
 
         <RadioButton
             android:id="@+id/radioMannerModeVibrateNoSilent"
@@ -41,14 +40,14 @@
             android:id="@+id/radioMannerModeSilent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_manner_silent" />
+            android:text="@string/label_manner_silent"
+            />
     </RadioGroup>
 
     <Button
         android:id="@+id/buttonSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="34dp"
         android:background="@drawable/background_show_dialog_button"
         android:text="@string/label_smart_timer_in_manner_silent"
         android:layout_alignParentBottom="true"

@@ -19,7 +19,7 @@ public class WidgetProviderImpl extends AppWidgetProvider {
     	RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
     	remoteViews.setOnClickPendingIntent(R.id.textViewWidget, pi);
 		remoteViews.setOnClickPendingIntent(R.id.buttonWidget, pi);
-		remoteViews.setTextViewText(R.id.textViewWidget,TimerSelector.getLabel(context));
+		remoteViews.setTextViewText(R.id.textViewWidget,TimerSelector.getShortLabel(context));
     	appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
     }
 

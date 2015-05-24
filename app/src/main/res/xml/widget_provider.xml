@@ -2,7 +2,4 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/widget"
     android:minHeight="72dp"
-    android:minWidth="72dp"
-    android:previewImage="@drawable/ic_launcher"
-    android:updatePeriodMillis="1000000" >
-</appwidget-provider>
+    android:minWidth="72dp"/>

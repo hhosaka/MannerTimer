@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.KeyEvent;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class WebViewActivity extends Activity{
 
@@ -30,7 +31,9 @@ public class WebViewActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		String url = getIntent().getStringExtra(PARAM_URL);
 		webview = new WebView(this);
+		webview.setWebViewClient(new WebViewClient());
 		setContentView(webview);
+		webview.getSettings().setJavaScriptEnabled(true);
 		webview.loadUrl( url );// TODO
 	}
 

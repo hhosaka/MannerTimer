@@ -9,6 +9,7 @@
         android:targetSdkVersion="11" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -21,15 +22,12 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.nag.mannertimer.WebViewActivity"
-            android:label="@string/title_activity_webview"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:label="@string/title_activity_webview"/>
         <activity
             android:name="com.nag.mannertimer.TimerSelectorParentActivity"
 			android:theme="@android:style/Theme.Translucent"
@@ -53,10 +51,6 @@
                 <action android:name = "android.media.RINGER_MODE_CHANGED" />
                 <action android:name="UPDATE_WIDGET" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider" />
         </receiver>
         <receiver android:name=".BootReceiver">
             <intent-filter>

@@ -113,7 +113,8 @@ public class MainActivity extends Activity {
 		switch( item.getItemId() )
 		{
 		case R.id.action_help:
-			WebViewActivity.showByURL(this, "http://www.yahoo.co.jp");
+			WebViewActivity.showByURL(this, "http://www.yahoo.co.jp/");
+//			WebViewActivity.showByURL(this, "https://sites.google.com/site/bsmatchmakerhelpjp/");
 			break;
 		default:
 			assert( false );
