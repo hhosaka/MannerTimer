@@ -15,6 +15,7 @@ import android.widget.Button;
 
 class TimerSelector implements OnClickListener {
 
+	private static final int TIME_UNIT = 60 * 1000;
 	private final LabelImpl[] labels;
 	private static class LabelImpl implements CharSequence{
 		private String label;
@@ -51,9 +52,9 @@ class TimerSelector implements OnClickListener {
 		if(time==0L){
 			return 0;
 		}else {
-			time -= System.currentTimeMillis();
+			time = (time - System.currentTimeMillis())/TIME_UNIT;
 			for( int i=1; i< labels.length; ++i) {
-				if (labels[i].getValue()*60*1000 > time) {
+				if (labels[i].getValue() > time) {
 					return i;
 				}
 			}
@@ -139,10 +140,7 @@ class TimerSelector implements OnClickListener {
 		if(value==0){
 			Executor.stop(context);
 		}else{
-			Calendar c = Calendar.getInstance();
-			//c.add(Calendar.MINUTE, value);
-			c.add(Calendar.SECOND, value);// for test
-			long time = c.getTimeInMillis();
+			long time = System.currentTimeMillis() + value * TIME_UNIT;
 			((AudioManager)context.getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AppPreference.loadMannerMode(context));
 			Executor.start(context, AppPreference.loadMannerMode(context), time);
 		}

@@ -9,13 +9,15 @@
         android:id="@+id/buttonWidget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_launcher" />
+        android:background="@drawable/ic_launcher"
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/textViewWidget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_label_home"
-        android:text="@string/app_name" />
+        android:text="@string/app_name"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

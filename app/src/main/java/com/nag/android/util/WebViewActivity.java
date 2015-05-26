@@ -1,4 +1,4 @@
-package com.nag.mannertimer;
+package com.nag.android.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,7 +34,7 @@ public class WebViewActivity extends Activity{
 		webview.setWebViewClient(new WebViewClient());
 		setContentView(webview);
 		webview.getSettings().setJavaScriptEnabled(true);
-		webview.loadUrl( url );// TODO
+		webview.loadUrl( url );
 	}
 
 	@Override
