@@ -34,6 +34,6 @@
     <string name="confirmation_title">"確認"</string>
     <string name="confirmation_message">"既にマナーモードですが、設定を続けますか？"</string>
     <string name="title_activity_timer_selector_parent">TimerSelectorParentActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="id_admob">ca-app-pub-4043672088061308/6607053271</string>
 
 </resources>
