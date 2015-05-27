@@ -30,6 +30,14 @@ public class Executor extends BroadcastReceiver {
 		getAudioManager(context).setRingerMode(mode);
 	}
 
+	public static void initialize(Context context){
+		if(AppPreference.loadRegisteredTime(context)>System.currentTimeMillis()) {
+			Executor.start(context, AppPreference.loadMannerMode(context), AppPreference.loadRegisteredTime(context));
+		}else{
+			Executor.stop(context);
+		}
+	}
+
 	public static void start(Context context, int mode, long time) {
 		AppPreference.saveRegisteredTime(context, time);
 		setRingerMode(context, mode);

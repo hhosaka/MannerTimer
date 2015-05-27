@@ -14,10 +14,12 @@
     <string name="label_short_smart_timer_in_manner_vibration">"ﾊﾞｲﾌﾞ"</string>
     <string name="label_short_smart_timer_in_manner_silent">"ｻｲﾚﾝﾄ"</string>
     <string name="label_smart_timer_deactivate">"キャンセル"</string>
+    <string name="label_smart_timer_option10">"10分後"</string>
     <string name="label_smart_timer_option30">"30分後"</string>
     <string name="label_smart_timer_option60">"１時間後"</string>
     <string name="label_smart_timer_option90">"１時間半後"</string>
     <string name="label_smart_timer_option120">"２時間後"</string>
+    <string name="label_smart_timer_option150">"２時間半後"</string>
     <string name="label_smart_timer_option180">"３時間後"</string>
     <string name="label_smart_timer_option240">"４時間後"</string>
     <string name="label_smart_timer_prefix">""</string>

@@ -65,10 +65,12 @@ class TimerSelector implements OnClickListener {
 	public TimerSelector(Context context) {
 		final LabelImpl[] labels = {
 				new LabelImpl(context.getString(R.string.label_smart_timer_deactivate),0),
+				new LabelImpl(context.getString(R.string.label_smart_timer_option10),10),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option30),30),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option60),60),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option90),90),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option120),120),
+				new LabelImpl(context.getString(R.string.label_smart_timer_option150),150),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option180),180),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option240),240)
 		};

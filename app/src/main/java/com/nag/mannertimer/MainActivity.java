@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		Executor.initialize(this);
 		init();
 		((Button)findViewById(R.id.buttonSelect)).setOnClickListener(new TimerSelector(this));
 

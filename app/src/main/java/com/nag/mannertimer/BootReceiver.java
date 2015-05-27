@@ -9,10 +9,6 @@ public class BootReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if(AppPreference.loadRegisteredTime(context)>System.currentTimeMillis()) {
-			Executor.start(context, AppPreference.loadMannerMode(context), AppPreference.loadRegisteredTime(context));
-		}else{
-			Executor.stop(context);
-		}
+		Executor.initialize(context);
 	}
 }
