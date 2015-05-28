@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.nag.mannertimer"
+        applicationId "com.nag.android.mannertimer_free"
         minSdkVersion 11
         targetSdkVersion 11
     }

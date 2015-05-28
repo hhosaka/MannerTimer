@@ -8,7 +8,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.support.v4.app.NotificationCompat;
+
+import com.nag.android.mannertimer_free.R;
 
 public class Executor extends BroadcastReceiver {
 	private static PendingIntent getIntent(Context context){

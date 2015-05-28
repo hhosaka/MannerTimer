@@ -1,18 +1,19 @@
 package com.nag.mannertimer;
 
-import android.media.AudioManager;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import com.nag.android.mannertimer_free.R;
 import com.nag.android.util.WebViewActivity;
 
 public class MainActivity extends Activity {
@@ -114,7 +115,7 @@ public class MainActivity extends Activity {
 		switch( item.getItemId() )
 		{
 		case R.id.action_help:
-			WebViewActivity.showByURL(this, "http://www.yahoo.co.jp/");
+			WebViewActivity.showByURL(this, getString(R.string.url_help));
 //			WebViewActivity.showByURL(this, "https://sites.google.com/site/bsmatchmakerhelpjp/");
 			break;
 		default:

@@ -7,7 +7,6 @@ import android.widget.FrameLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.nag.mannertimer.R;
 
 /**
  * Created by hosaka-hitoshi on 2015/05/26.

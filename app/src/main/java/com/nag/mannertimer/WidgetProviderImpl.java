@@ -8,8 +8,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.widget.Button;
 import android.widget.RemoteViews;
+
+import com.nag.android.mannertimer_free.R;
 
 public class WidgetProviderImpl extends AppWidgetProvider {
 	private static final String ACTION_UPDATE_WIDGET = "UPDATE_WIDGET";
