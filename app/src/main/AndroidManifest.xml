@@ -18,7 +18,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <!-- comment out for free version start
+        <!-- comment out for free version start -->
         <activity
             android:name="com.nag.mannertimer.MainActivity"
             android:label="@string/app_name"
@@ -28,8 +28,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        comment out for free version end -->
-        <!-- open for free version -->
+        <!-- comment out for free version end -->
+        <!-- open for free version
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version" />
         <activity android:name="com.google.android.gms.ads.AdActivity"
@@ -44,7 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- open for free version -->
+        open for free version -->
         <activity
             android:name="com.nag.android.util.WebViewActivity"
             android:label="@string/title_activity_webview"/>
@@ -55,7 +55,7 @@
         </activity>
         
         <receiver android:name="com.nag.mannertimer.Executor" />
-        <!-- comment out for free version start
+        <!-- comment out for free version start-->
         <receiver android:name="com.nag.mannertimer.WidgetProviderImpl" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -65,7 +65,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider" />
         </receiver>
-        comment out for free version end -->
+        <!--comment out for free version end -->
         <receiver
             android:name="com.nag.mannertimer.WidgetProviderImpl$WidgetIntentReceiver"
             android:label="@string/app_name" >

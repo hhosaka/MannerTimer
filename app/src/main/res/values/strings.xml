@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Manner Timer Free</string>
+    <string name="app_name">Manner Timer</string>
     <string name="title_activity_webview">Help</string>
     <string name="action_help">Help</string>
     <string name="label_smart_timer_deactivating">"Tap to Manner"</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">マナータイマーFree</string>
+    <string name="app_name">マナータイマー</string>
     <string name="title_activity_webview">ヘルプ</string>
     <string name="action_help">ヘルプ</string>
     <string name="label_smart_timer_deactivating">"タップしてマナー"</string>
