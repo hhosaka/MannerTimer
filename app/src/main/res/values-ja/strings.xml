@@ -26,4 +26,6 @@
     <string name="label_manner_vibrate_no_silent">バイブレーション\r\n(サイレントにしない)</string>
     <string name="label_manner_silent">サイレント</string>
     <string name="url_help">"https://sites.google.com/site/hhosaka183/manner-timer-help/ja"</string>
+    <string name="title_activity_timer_selector_parent"></string>
+    <string name="id_admob">ca-app-pub-4043672088061308/6607053271</string>
 </resources>
