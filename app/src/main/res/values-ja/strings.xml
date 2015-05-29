@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">マナータイマーFree</string>
+    <string name="title_activity_webview">ヘルプ</string>
+    <string name="action_help">ヘルプ</string>
+    <string name="label_smart_timer_deactivating">"タップしてマナー"</string>
+    <string name="label_smart_timer_in_manner_vibration">"バイブレーションモード"</string>
+    <string name="label_smart_timer_in_manner_silent">"サイレントモード"</string>
+    <string name="label_short_smart_timer_deactivating">"ﾏﾅｰﾀｲﾏｰ"</string>
+    <string name="label_short_smart_timer_in_manner_vibration">"ﾊﾞｲﾌﾞ"</string>
+    <string name="label_short_smart_timer_in_manner_silent">"ｻｲﾚﾝﾄ"</string>
+    <string name="label_smart_timer_deactivate">"キャンセル"</string>
+    <string name="label_smart_timer">"復帰する時間の設定"</string>
+    <string name="label_smart_timer_option10">"10分後"</string>
+    <string name="label_smart_timer_option30">"30分後"</string>
+    <string name="label_smart_timer_option60">"１時間後"</string>
+    <string name="label_smart_timer_option90">"１時間半後"</string>
+    <string name="label_smart_timer_option120">"２時間後"</string>
+    <string name="label_smart_timer_option150">"２時間半後"</string>
+    <string name="label_smart_timer_option180">"３時間後"</string>
+    <string name="label_smart_timer_option240">"４時間後"</string>
+    <string name="label_smart_timer_prefix">""</string>
+    <string name="label_smart_timer_postfix">"に復帰します。"</string>
+    <string name="label_manner_mode">マナーモードの設定</string>
+    <string name="label_manner_vibrate">バイブレーション</string>
+    <string name="label_manner_vibrate_no_silent">バイブレーション\r\n(サイレントにしない)</string>
+    <string name="label_manner_silent">サイレント</string>
+    <string name="url_help">"https://sites.google.com/site/hhosaka183/manner-timer-help/ja"</string>
+</resources>

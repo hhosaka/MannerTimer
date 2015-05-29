@@ -57,12 +57,12 @@ public class Executor extends BroadcastReceiver {
 				.setOngoing(true)
 				.setContentIntent(pi)
 				.getNotification();
-		manager.notify(R.string.label_default_manner_mode, notification);
+		manager.notify(R.string.app_name, notification);
 	}
 
 	private static void cancelNotify(Context context) {
 		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		manager.cancel(R.string.label_default_manner_mode);
+		manager.cancel(R.string.app_name);
 	}
 
 	public static void stop(Context context){

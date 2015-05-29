@@ -117,7 +117,7 @@ class TimerSelector implements OnClickListener {
 	public void showDialog(final View v, final Activity activity, final Button button) {
 		final Context context = v.getContext();
 		new AlertDialog.Builder(context)
-				.setTitle(context.getString(R.string.confirmation_title))
+				.setTitle(context.getString(R.string.label_smart_timer))
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
 					@Override
 					public void onCancel(DialogInterface dialog) {
