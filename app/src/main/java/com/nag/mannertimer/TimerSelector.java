@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.nag.android.mannertimer_free.R;
-
 class TimerSelector implements OnClickListener {
 
 	private static final int TIME_UNIT = 60 * 1000;

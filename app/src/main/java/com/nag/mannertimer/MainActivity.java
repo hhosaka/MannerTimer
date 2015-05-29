@@ -13,8 +13,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
-import com.nag.android.mannertimer_free.R;
 import com.nag.android.util.WebViewActivity;
+import com.nag.mannertimer.R;
 
 public class MainActivity extends Activity {
 

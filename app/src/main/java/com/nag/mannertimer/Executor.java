@@ -9,8 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 
-import com.nag.android.mannertimer_free.R;
-
 public class Executor extends BroadcastReceiver {
 	private static PendingIntent getIntent(Context context){
 		return PendingIntent.getBroadcast(context.getApplicationContext(), 0, new Intent(context, Executor.class), 0);
