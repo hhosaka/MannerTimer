@@ -10,9 +10,9 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- open for free version start-->
+    <!-- open for free version start
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!-- open for free version end -->
+    open for free version end -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
