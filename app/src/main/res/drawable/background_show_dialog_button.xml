@@ -8,7 +8,10 @@
         android:top="10dp"
         android:right="10dp"
         android:bottom="10dp" />
-    <solid android:color="#A01E90FF" />
+    <gradient
+        android:startColor="#A01E90FF"
+        android:endColor="#CCCCCCFF"
+        android:angle="270" />
     <stroke android:width="3dp"
             android:color="#0000ff"/>
 </shape>
