@@ -1,12 +1,20 @@
 package com.nag.mannertimer;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -33,6 +41,20 @@ public class MainActivity extends Activity {
 //		((TimerSelector)findViewById(R.id.buttonSelect)).setLabel();
 //	}
 
+	private int id = 0;
+
+	private void notification(String number){
+
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+		builder.setSmallIcon(R.drawable.ic_launcher);
+
+		builder.setContentTitle("MannerTimer"); // 1行目
+		builder.setContentText("Receive call : "+number); // 2行目
+		builder.setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+number)), 0));
+
+		NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
+		manager.notify(++id, builder.build());
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,6 +67,19 @@ public class MainActivity extends Activity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
 		registerReceiver(status_monitor =new StatusMonitor(),filter);
+
+		((TelephonyManager)getSystemService(TELEPHONY_SERVICE)).listen
+				(new PhoneStateListener() {
+					@Override
+					public void onCallStateChanged(int state, String number) {
+						switch (state) {
+							case TelephonyManager.CALL_STATE_RINGING:
+								notification(number);
+								break;
+						}
+					}
+				}
+		, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
 	private Context getContext(){
