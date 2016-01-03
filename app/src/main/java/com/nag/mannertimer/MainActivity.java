@@ -19,8 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
+import com.nag.android.util.PreferenceHelper;
 import com.nag.android.util.WebViewActivity;
 import com.nag.mannertimer.R;
 
@@ -41,20 +44,6 @@ public class MainActivity extends Activity {
 //		((TimerSelector)findViewById(R.id.buttonSelect)).setLabel();
 //	}
 
-	private int id = 0;
-
-	private void notification(String number){
-
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-		builder.setSmallIcon(R.drawable.ic_launcher);
-
-		builder.setContentTitle("MannerTimer"); // 1行目
-		builder.setContentText("Receive call : "+number); // 2行目
-		builder.setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+number)), 0));
-
-		NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
-		manager.notify(++id, builder.build());
-	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,24 +52,22 @@ public class MainActivity extends Activity {
 		Executor.initialize(this);
 		init();
 		((Button)findViewById(R.id.buttonSelect)).setOnClickListener(new TimerSelector(this));
-
+		{
+			CheckBox cb = (CheckBox) findViewById(R.id.checkBoxNotification);
+			cb.setChecked(MonitorService.isNotifyOnReceiveCall(this));
+			cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					MonitorService.setNotifyOnReceiveCall(MainActivity.this, isChecked);
+					buttonView.setChecked(isChecked);
+				}
+			});
+		}
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
 		registerReceiver(status_monitor =new StatusMonitor(),filter);
-
-		((TelephonyManager)getSystemService(TELEPHONY_SERVICE)).listen
-				(new PhoneStateListener() {
-					@Override
-					public void onCallStateChanged(int state, String number) {
-						switch (state) {
-							case TelephonyManager.CALL_STATE_RINGING:
-								notification(number);
-								break;
-						}
-					}
-				}
-		, PhoneStateListener.LISTEN_CALL_STATE);
 	}
+
 
 	private Context getContext(){
 		return this;

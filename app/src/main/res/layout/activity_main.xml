@@ -53,4 +53,12 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_notify_on_recieve_call"
+        android:id="@+id/checkBoxNotification"
+        android:layout_below="@+id/radioGroupMannerModeSetting"
+        android:layout_alignLeft="@+id/radioGroupMannerModeSetting"/>
+
 </RelativeLayout>

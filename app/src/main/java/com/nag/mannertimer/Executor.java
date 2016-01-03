@@ -35,6 +35,7 @@ public class Executor extends BroadcastReceiver {
 		}else{
 			Executor.stop(context);
 		}
+		MonitorService.start(context);
 	}
 
 	public static void start(Context context, int mode, long time) {
