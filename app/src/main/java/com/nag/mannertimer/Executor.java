@@ -1,13 +1,18 @@
 package com.nag.mannertimer;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 
 public class Executor extends BroadcastReceiver {
 	private static PendingIntent getIntent(Context context){
@@ -65,6 +70,10 @@ public class Executor extends BroadcastReceiver {
 	}
 
 	public static void stop(Context context){
+		if(AppPreference.loadRegisteredTime(context)!=0 && AppPreference.loadHasCall(context)){
+			DoRingActivity.invoke(context);
+		}
+		AppPreference.saveHasCall(context, false);
 		AppPreference.saveRegisteredTime(context, 0L);
 		if(getRingerMode(context)!=AudioManager.RINGER_MODE_NORMAL) {
 			setRingerMode(context, AudioManager.RINGER_MODE_NORMAL);

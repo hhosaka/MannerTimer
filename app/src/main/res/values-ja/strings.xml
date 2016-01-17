@@ -25,6 +25,8 @@
     <string name="label_manner_vibrate">バイブレーション</string>
     <string name="label_manner_vibrate_no_silent">バイブレーション\r\n(サイレントにしない)</string>
     <string name="label_manner_silent">サイレント</string>
+    <string name="label_missed_call">着信がありました</string>
+    <string name="label_confirmed">確認</string>
     <string name="url_help">"https://sites.google.com/site/hhosaka183/manner-timer-help/ja"</string>
     <string name="title_activity_timer_selector_parent"></string>
     <string name="id_admob">ca-app-pub-4043672088061308/6607053271</string>

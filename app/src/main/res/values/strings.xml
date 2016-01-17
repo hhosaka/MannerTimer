@@ -26,9 +26,10 @@
     <string name="label_manner_vibrate">Vibration</string>
     <string name="label_manner_vibrate_no_silent">Vibration\r\n(Never Silent)</string>
     <string name="label_manner_silent">Silent</string>
+    <string name="label_missed_call">You have Missed Call(s)</string>
+    <string name="label_confirmed">Confirmed</string>
     <string name="url_help">"https://sites.google.com/site/hhosaka183/manner-timer-help/en"</string>
     <string name="title_activity_timer_selector_parent"></string>
     <string name="id_admob">ca-app-pub-4043672088061308/6607053271</string>
     <string name="label_notify_on_recieve_call">Notify on recieve call</string>
-
 </resources>
