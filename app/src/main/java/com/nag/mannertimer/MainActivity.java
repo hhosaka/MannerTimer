@@ -1,11 +1,13 @@
 package com.nag.mannertimer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
@@ -21,6 +23,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.nag.android.util.PreferenceHelper;
@@ -139,6 +142,9 @@ public class MainActivity extends Activity {
 		case R.id.action_help:
 			WebViewActivity.showByURL(this, getString(R.string.url_help));
 //			WebViewActivity.showByURL(this, "https://sites.google.com/site/bsmatchmakerhelpjp/");
+			break;
+		case R.id.action_custom_time:
+			TimerSelector.setCustomTime(this);
 			break;
 		default:
 			assert( false );

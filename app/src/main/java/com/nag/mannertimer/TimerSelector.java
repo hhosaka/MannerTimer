@@ -5,10 +5,15 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.media.AudioManager;
+import android.text.InputType;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.nag.android.util.PreferenceHelper;
 
 class TimerSelector implements OnClickListener {
 
@@ -59,6 +64,27 @@ class TimerSelector implements OnClickListener {
 		}
 	}
 
+	private static String PREF_CUSTOM_TIME = "custom_time";
+
+	public static void setCustomTime(final Context context){
+		final EditText edit = new EditText(context);
+		edit.setText(Integer.toString(PreferenceHelper.getInstance(context).getInt(PREF_CUSTOM_TIME, 60)));
+		edit.setInputType(InputType.TYPE_CLASS_NUMBER);
+		new AlertDialog.Builder(context)
+				.setTitle(context.getString(R.string.action_custom_time_explanation))
+				.setPositiveButton("OK", (new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						int custom_time = Integer.parseInt(edit.getText().toString());
+						if(custom_time > 0){
+							PreferenceHelper.getInstance(context).putInt(PREF_CUSTOM_TIME, custom_time);
+						}
+					}
+				}))
+				.setNegativeButton("Cancel", null)
+				.setView(edit)
+				.show();
+	}
 	public TimerSelector(Context context) {
 		final LabelImpl[] labels = {
 				new LabelImpl(context.getString(R.string.label_smart_timer_deactivate),0),
@@ -69,8 +95,8 @@ class TimerSelector implements OnClickListener {
 				new LabelImpl(context.getString(R.string.label_smart_timer_option120),120),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option150),150),
 				new LabelImpl(context.getString(R.string.label_smart_timer_option180),180),
-				new LabelImpl(context.getString(R.string.label_smart_timer_option240),240)
-		};
+				new LabelImpl(context.getString(R.string.label_smart_timer_option240),240),
+				null};
 		this.labels = labels;
 	}
 	
@@ -114,6 +140,8 @@ class TimerSelector implements OnClickListener {
 
 	public void showDialog(final View v, final Activity activity, final Button button) {
 		final Context context = v.getContext();
+		int custom_time = PreferenceHelper.getInstance(context).getInt(PREF_CUSTOM_TIME, 60);
+		labels[labels.length-1] = new LabelImpl(context.getString(R.string.label_smart_timer_custom_prefix) + custom_time + context.getString(R.string.label_smart_timer_custom_postfix),custom_time);
 		new AlertDialog.Builder(context)
 				.setTitle(context.getString(R.string.label_smart_timer))
 				.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -136,13 +164,24 @@ class TimerSelector implements OnClickListener {
 	}
 
 	private void execute(Context context, int value) {
-		if(value==0){
-			Executor.stop(context);
-		}else{
-			long time = System.currentTimeMillis() + value * TIME_UNIT;
-			((AudioManager)context.getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AppPreference.loadMannerMode(context));
-			Executor.start(context, AppPreference.loadMannerMode(context), time);
+		switch(value) {
+			case 0:
+				Executor.stop(context);
+				break;
+			case -1:
+				Toast.makeText(context, "custom time", Toast.LENGTH_LONG).show();
+				startTimer(context, 9999);//TODO
+				break;
+			default:
+				startTimer(context, value);
+				break;
 		}
+	}
+
+	private void startTimer(Context context, int value) {
+		long time = System.currentTimeMillis() + value * TIME_UNIT;
+		((AudioManager) context.getSystemService(Context.AUDIO_SERVICE)).setRingerMode(AppPreference.loadMannerMode(context));
+		Executor.start(context, AppPreference.loadMannerMode(context), time);
 	}
 
 	@Override

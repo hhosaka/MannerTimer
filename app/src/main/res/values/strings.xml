@@ -4,6 +4,7 @@
     <string name="app_name">Manner Timer</string>
     <string name="title_activity_webview">Help</string>
     <string name="action_help">Help</string>
+    <string name="action_custom_time">Custom Time</string>
     <string name="label_smart_timer_deactivating">"Tap to Manner"</string>
     <string name="label_smart_timer_in_manner_vibration">"Vibration"</string>
     <string name="label_smart_timer_in_manner_silent">"Silent"</string>
@@ -20,6 +21,9 @@
     <string name="label_smart_timer_option150">"2 hours and a half later"</string>
     <string name="label_smart_timer_option180">"3 hours later"</string>
     <string name="label_smart_timer_option240">"4 hours later"</string>
+    <string name="label_smart_timer_custom_prefix">"custom settings : "</string>
+    <string name="action_custom_time_explanation">input custom time in minutes</string>
+    <string name="label_smart_timer_custom_postfix">" min later"</string>
     <string name="label_smart_timer_prefix">"restore at "</string>
     <string name="label_smart_timer_postfix">""</string>
     <string name="label_manner_mode">Manner Mode Style</string>

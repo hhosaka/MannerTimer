@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">マナータイマー</string>
     <string name="title_activity_webview">ヘルプ</string>
+    <string name="action_custom_time">カスタム時間</string>
+    <string name="action_custom_time_explanation">任意の時間を分単位で入力してください</string>
     <string name="action_help">ヘルプ</string>
     <string name="label_smart_timer_deactivating">"タップしてマナー"</string>
     <string name="label_smart_timer_in_manner_vibration">"バイブレーションモード"</string>
@@ -19,6 +21,8 @@
     <string name="label_smart_timer_option150">"２時間半後"</string>
     <string name="label_smart_timer_option180">"３時間後"</string>
     <string name="label_smart_timer_option240">"４時間後"</string>
+    <string name="label_smart_timer_custom_prefix">"カスタム　: "</string>
+    <string name="label_smart_timer_custom_postfix">" 分後 "</string>
     <string name="label_smart_timer_prefix">""</string>
     <string name="label_smart_timer_postfix">"に復帰します。"</string>
     <string name="label_manner_mode">マナーモードの設定</string>
