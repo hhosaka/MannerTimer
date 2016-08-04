@@ -25,7 +25,21 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
     	RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
 //    	remoteViews.setOnClickPendingIntent(R.id.textViewWidget, pi);
 //		remoteViews.setOnClickPendingIntent(R.id.buttonWidget, pi);
-		remoteViews.setTextViewText(R.id.textViewWidget,"test");
+		String label = "";
+		switch(AppPreference.loadMannerModeId(context)){
+			case R.id.radioMannerModeVibrate:
+				label = "R.id.radioMannerModeVibrate";
+				break;
+			case R.id.radioMannerModeVibrateNoSilent:
+				label = "radioMannerModeVibrateNoSilent";
+				break;
+			case R.id.radioMannerModeSilent:
+				label = "radioMannerModeSilent";
+				break;
+			default:
+				throw new UnsupportedOperationException();
+		}
+		remoteViews.setTextViewText(R.id.textViewWidget, label);
     	appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
     }
 

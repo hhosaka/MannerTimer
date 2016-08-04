@@ -1,34 +1,21 @@
 package com.nag.mannertimer;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import com.nag.android.util.PreferenceHelper;
 import com.nag.android.util.WebViewActivity;
-import com.nag.mannertimer.R;
 
 public class MainActivity extends Activity {
 
@@ -76,46 +63,13 @@ public class MainActivity extends Activity {
 		return this;
 	}
 
-	private int getMannerModeId(){
-		switch(AppPreference.loadMannerMode(this)){
-			case AudioManager.RINGER_MODE_SILENT:
-				return R.id.radioMannerModeSilent;
-			case AudioManager.RINGER_MODE_VIBRATE:
-				if(AppPreference.loadIsIgnoreSilent(this)) {
-					return R.id.radioMannerModeVibrateNoSilent;
-				}else{
-					return R.id.radioMannerModeVibrate;
-				}
-		}
-		throw new UnsupportedOperationException();
-	}
-
 	private void init() {
-		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting)).check(getMannerModeId());
+		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting)).check(AppPreference.loadMannerModeId(this));
 		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting))
 				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 					@Override
 					public void onCheckedChanged(RadioGroup radiogroup, int id) {
-						switch (id) {
-							case R.id.radioMannerModeVibrate:
-								AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_VIBRATE);
-								AppPreference.saveIsIgnoreSilent(getContext(), false);
-								break;
-							case R.id.radioMannerModeVibrateNoSilent:
-								AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_VIBRATE);
-								AppPreference.saveIsIgnoreSilent(getContext(), true);
-								if(Executor.getRingerMode(MainActivity.this)==AudioManager.RINGER_MODE_SILENT){
-									Executor.setRingerMode(MainActivity.this, AudioManager.RINGER_MODE_VIBRATE);
-								}
-								break;
-							case R.id.radioMannerModeSilent:
-								AppPreference.saveMannerMode(getContext(), AudioManager.RINGER_MODE_SILENT);
-								AppPreference.saveIsIgnoreSilent(getContext(), false);
-								break;
-							default:
-								assert (false);
-								break;
-						}
+						AppPreference.saveMannerModeId(MainActivity.this, id);
 					}
 				});
 	}

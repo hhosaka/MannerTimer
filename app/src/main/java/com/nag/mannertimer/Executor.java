@@ -1,18 +1,13 @@
 package com.nag.mannertimer;
 
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 
 public class Executor extends BroadcastReceiver {
 	private static PendingIntent getIntent(Context context){
@@ -48,7 +43,7 @@ public class Executor extends BroadcastReceiver {
 		setRingerMode(context, mode);
 		getManager(context).set(AlarmManager.RTC_WAKEUP, time, getIntent(context));
 		showNotify(context, TimerSelector.getLabel(context));
-		WidgetProviderImpl.updateWidget(context);
+		TimerSettingWidgetProvider.updateWidget(context);
 	}
 
 	private static void showNotify(Context context, String subject){
@@ -80,7 +75,7 @@ public class Executor extends BroadcastReceiver {
 		}
 		getManager(context).cancel(getIntent(context));
 		cancelNotify(context);
-		WidgetProviderImpl.updateWidget(context);
+		TimerSettingWidgetProvider.updateWidget(context);
 	}
 
 	public static void update(Context context, int mode){

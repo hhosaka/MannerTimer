@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.widget.RemoteViews;
 
-public class WidgetProviderImpl extends AppWidgetProvider {
+public class TimerSettingWidgetProvider extends AppWidgetProvider {
 	private static final String ACTION_UPDATE_WIDGET = "UPDATE_WIDGET";
 	public static class WidgetIntentReceiver extends BroadcastReceiver {
 		@Override
@@ -44,7 +44,7 @@ public class WidgetProviderImpl extends AppWidgetProvider {
 	}
 
 	public static void pushWidgetUpdate(Context context, RemoteViews remoteViews) {
-		ComponentName myWidget = new ComponentName(context, WidgetProviderImpl.class);
+		ComponentName myWidget = new ComponentName(context, TimerSettingWidgetProvider.class);
 		AppWidgetManager manager = AppWidgetManager.getInstance(context);
 		manager.updateAppWidget(myWidget, remoteViews);
 	}

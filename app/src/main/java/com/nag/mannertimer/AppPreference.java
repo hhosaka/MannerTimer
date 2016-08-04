@@ -12,10 +12,46 @@ class AppPreference {
 	private static final String PREF_CONFIRM_ON_ALREADY_MANNER = "confirm_on_already_manner";
 	private static final String PREF_HAS_CALL = "has_call";
 
+	public static int loadMannerModeId(Context context){
+		switch(AppPreference.loadMannerMode(context)){
+			case AudioManager.RINGER_MODE_SILENT:
+				return R.id.radioMannerModeSilent;
+			case AudioManager.RINGER_MODE_VIBRATE:
+				if(AppPreference.loadIsIgnoreSilent(context)) {
+					return R.id.radioMannerModeVibrateNoSilent;
+				}else{
+					return R.id.radioMannerModeVibrate;
+				}
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	public static void saveMannerModeId(Context context, int mannerMode) {
+		switch (mannerMode) {
+			case R.id.radioMannerModeVibrate:
+				saveMannerMode(context, AudioManager.RINGER_MODE_VIBRATE);
+				saveIsIgnoreSilent(context, false);
+				break;
+			case R.id.radioMannerModeVibrateNoSilent:
+				saveMannerMode(context, AudioManager.RINGER_MODE_VIBRATE);
+				saveIsIgnoreSilent(context, true);
+				if(Executor.getRingerMode(context)==AudioManager.RINGER_MODE_SILENT){
+					Executor.setRingerMode(context, AudioManager.RINGER_MODE_VIBRATE);
+				}
+				break;
+			case R.id.radioMannerModeSilent:
+				saveMannerMode(context, AudioManager.RINGER_MODE_SILENT);
+				saveIsIgnoreSilent(context, false);
+				break;
+			default:
+				throw new UnsupportedOperationException();
+		}
+	}
+
 	public static int loadMannerMode(Context context){
 		return PreferenceHelper.getInstance(context).getInt(PREF_MANNER_MODE, AudioManager.RINGER_MODE_VIBRATE);
 	}
-	public static void saveMannerMode(Context context, int mode){
+	private static void saveMannerMode(Context context, int mode){
 		PreferenceHelper.getInstance(context).putInt(PREF_MANNER_MODE, mode);
 	}
 	public static long loadRegisteredTime(Context context){

@@ -72,7 +72,7 @@
 
         <receiver android:name=".Executor" />
         <!-- comment out for free version start -->
-        <receiver android:name=".WidgetProviderImpl" >
+        <receiver android:name=".TimerSettingWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -82,7 +82,7 @@
                 android:resource="@xml/widget_provider" />
         </receiver>
         <receiver
-            android:name=".WidgetProviderImpl$WidgetIntentReceiver"
+            android:name=".TimerSettingWidgetProvider$WidgetIntentReceiver"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.media.RINGER_MODE_CHANGED" />
