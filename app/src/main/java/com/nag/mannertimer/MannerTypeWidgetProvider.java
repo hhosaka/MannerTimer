@@ -11,7 +11,8 @@ import android.media.AudioManager;
 import android.widget.RemoteViews;
 
 public class MannerTypeWidgetProvider extends AppWidgetProvider {
-//	private static final String ACTION_UPDATE_WIDGET = "UPDATE_WIDGET";
+	private static final String ACTION_INCREASE_MANNER_MODE = "INCREASE_MANNER_MODE";
+
 	public static class WidgetIntentReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -19,12 +20,18 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 		}
 	}
 
+	private PendingIntent onClickWidget(Context context){
+		Intent intent = new Intent();
+		intent.setAction(ACTION_INCREASE_MANNER_MODE);
+		return PendingIntent.getBroadcast(context, 0, intent, 0);
+	}
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-//		PendingIntent pi = buildShowActivityIntent(context);
+		PendingIntent pi = onClickWidget(context);
     	RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
-//    	remoteViews.setOnClickPendingIntent(R.id.textViewWidget, pi);
-//		remoteViews.setOnClickPendingIntent(R.id.buttonWidget, pi);
+    	remoteViews.setOnClickPendingIntent(R.id.textViewWidget, pi);
+		remoteViews.setOnClickPendingIntent(R.id.buttonWidget, pi);
 		String label = "";
 		switch(AppPreference.loadMannerModeId(context)){
 			case R.id.radioMannerModeVibrate:
@@ -47,10 +54,24 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 //		return PendingIntent.getActivity(context, 0, new Intent(context, TimerSelectorParentActivity.class), 0);
 //	}
 	public static void handleReceive(Context context, Intent intent){
-//		if (intent.getAction().equals(ACTION_UPDATE_WIDGET)) {
-//			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
+		if (intent.getAction().equals(ACTION_INCREASE_MANNER_MODE)) {
+			switch(AppPreference.loadMannerModeId(context)){
+				case R.id.radioMannerModeVibrate:
+					AppPreference.saveMannerModeId(context, R.id.radioMannerModeVibrateNoSilent);
+					break;
+				case R.id.radioMannerModeVibrateNoSilent:
+					AppPreference.saveMannerModeId(context, R.id.radioMannerModeSilent);
+					break;
+				case R.id.radioMannerModeSilent:
+					AppPreference.saveMannerModeId(context, R.id.radioMannerModeVibrate);
+					break;
+				default:
+					throw new UnsupportedOperationException();
+			}
+		}
+			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
 //			remoteViews.setTextViewText(R.id.textViewWidget, TimerSelector.getShortLabel(context));
-//			pushWidgetUpdate(context, remoteViews);
+			pushWidgetUpdate(context, remoteViews);
 //		}else if (intent.getAction().equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
 //			Executor.update(context, intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1));
 //		}
