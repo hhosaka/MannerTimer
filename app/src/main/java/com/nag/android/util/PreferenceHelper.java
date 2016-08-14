@@ -6,13 +6,14 @@ import android.preference.PreferenceManager;
 
 public class PreferenceHelper {
 	private static PreferenceHelper instance;
+	private final SharedPreferences pref;
+
 	public static PreferenceHelper getInstance(Context context){
 		if(instance==null){
 			instance=new PreferenceHelper(context);
 		}
 		return instance;
 	}
-	private final SharedPreferences pref;
 
 	public PreferenceHelper(Context context){
 		pref=PreferenceManager.getDefaultSharedPreferences(context);

@@ -11,7 +11,7 @@ import android.media.AudioManager;
 import android.widget.RemoteViews;
 
 public class MannerTypeWidgetProvider extends AppWidgetProvider {
-	private static final String ACTION_INCREASE_MANNER_MODE = "INCREASE_MANNER_MODE";
+	private static final String ACTION_INCREASE_MANNER_MODE = "ACTION_INCREASE_MANNER_MODE";
 
 	public static class WidgetIntentReceiver extends BroadcastReceiver {
 		@Override
@@ -23,7 +23,20 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 	private PendingIntent onClickWidget(Context context){
 		Intent intent = new Intent();
 		intent.setAction(ACTION_INCREASE_MANNER_MODE);
-		return PendingIntent.getBroadcast(context, 0, intent, 0);
+		return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+	}
+
+	private static String getLabel(int id){
+		switch(id){
+			case R.id.radioMannerModeVibrate:
+				return "Vibrate";
+			case R.id.radioMannerModeVibrateNoSilent:
+				return "Vibrate No Silent";
+			case R.id.radioMannerModeSilent:
+				return "Silent";
+			default:
+				throw new UnsupportedOperationException();
+		}
 	}
 
     @Override
@@ -32,21 +45,7 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
     	RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
     	remoteViews.setOnClickPendingIntent(R.id.textViewWidget, pi);
 		remoteViews.setOnClickPendingIntent(R.id.buttonWidget, pi);
-		String label = "";
-		switch(AppPreference.loadMannerModeId(context)){
-			case R.id.radioMannerModeVibrate:
-				label = "R.id.radioMannerModeVibrate";
-				break;
-			case R.id.radioMannerModeVibrateNoSilent:
-				label = "radioMannerModeVibrateNoSilent";
-				break;
-			case R.id.radioMannerModeSilent:
-				label = "radioMannerModeSilent";
-				break;
-			default:
-				throw new UnsupportedOperationException();
-		}
-		remoteViews.setTextViewText(R.id.textViewWidget, label);
+		remoteViews.setTextViewText(R.id.textViewWidget, getLabel(AppPreference.loadMannerModeId(context)));
     	appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
     }
 
@@ -70,7 +69,7 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 			}
 		}
 			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
-//			remoteViews.setTextViewText(R.id.textViewWidget, TimerSelector.getShortLabel(context));
+			remoteViews.setTextViewText(R.id.textViewWidget, getLabel(AppPreference.loadMannerModeId(context)));
 			pushWidgetUpdate(context, remoteViews);
 //		}else if (intent.getAction().equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
 //			Executor.update(context, intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1));

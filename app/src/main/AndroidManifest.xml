@@ -96,7 +96,15 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider" />
+                android:resource="@xml/manner_type_widget_provider" />
+        </receiver>
+        <receiver
+            android:name=".MannerTypeWidgetProvider$WidgetIntentReceiver"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="ACTION_INCREASE_MANNER_MODE" />
+                <action android:name="UPDATE_WIDGET" />
+            </intent-filter>
         </receiver>
         <!-- comment out for free version end -->
         <receiver android:name=".BootReceiver" >
