@@ -49,38 +49,38 @@ class AppPreference {
 	}
 
 	public static int loadMannerMode(Context context){
-		return PreferenceHelper.getInstance(context).getInt(PREF_MANNER_MODE, AudioManager.RINGER_MODE_VIBRATE);
+		return PreferenceHelper.getInstance(context).getInt(context, PREF_MANNER_MODE, AudioManager.RINGER_MODE_VIBRATE);
 	}
 	private static void saveMannerMode(Context context, int mode){
-		PreferenceHelper.getInstance(context).putInt(PREF_MANNER_MODE, mode);
+		PreferenceHelper.getInstance(context).putInt(context, PREF_MANNER_MODE, mode);
 	}
 	public static long loadRegisteredTime(Context context){
-		return PreferenceHelper.getInstance(context).getLong(PREF_REGISTERED_TIME, 0L);
+		return PreferenceHelper.getInstance(context).getLong(context, PREF_REGISTERED_TIME, 0L);
 	}
 	public static void saveRegisteredTime(Context context, long value){
-		PreferenceHelper.getInstance(context).putLong(PREF_REGISTERED_TIME, value);
+		PreferenceHelper.getInstance(context).putLong(context, PREF_REGISTERED_TIME, value);
 	}
 	public static boolean loadIsIgnoreSilent(Context context){
-		return PreferenceHelper.getInstance(context).getBoolean(PREF_IS_IGNORE_SILENT,false);
+		return PreferenceHelper.getInstance(context).getBoolean(context, PREF_IS_IGNORE_SILENT,false);
 	}
 
 	public static void saveIsIgnoreSilent(Context context, boolean value) {
-		PreferenceHelper.getInstance(context).putBoolean(PREF_IS_IGNORE_SILENT, value);
+		PreferenceHelper.getInstance(context).putBoolean(context, PREF_IS_IGNORE_SILENT, value);
 	}
 
 	public static boolean loadIsConfirmAlreadyOnManner(Context context){
-		return PreferenceHelper.getInstance(context).getBoolean(PREF_CONFIRM_ON_ALREADY_MANNER, true);
+		return PreferenceHelper.getInstance(context).getBoolean(context, PREF_CONFIRM_ON_ALREADY_MANNER, true);
 	}
 
 	public static void saveIsConfirmAlreadyOnManner(Context context, boolean value) {
-		PreferenceHelper.getInstance(context).putBoolean(PREF_CONFIRM_ON_ALREADY_MANNER, value);
+		PreferenceHelper.getInstance(context).putBoolean(context, PREF_CONFIRM_ON_ALREADY_MANNER, value);
 	}
 	public static boolean loadHasCall(Context context){
-		return PreferenceHelper.getInstance(context).getBoolean(PREF_HAS_CALL, false);
+		return PreferenceHelper.getInstance(context).getBoolean(context, PREF_HAS_CALL, false);
 	}
 
 	public static void saveHasCall(Context context, boolean value) {
-		PreferenceHelper.getInstance(context).putBoolean(PREF_HAS_CALL, value);
+		PreferenceHelper.getInstance(context).putBoolean(context, PREF_HAS_CALL, value);
 	}
 
 }

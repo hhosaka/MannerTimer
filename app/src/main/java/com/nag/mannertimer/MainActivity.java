@@ -70,8 +70,15 @@ public class MainActivity extends Activity {
 					@Override
 					public void onCheckedChanged(RadioGroup radiogroup, int id) {
 						AppPreference.saveMannerModeId(MainActivity.this, id);
+						MannerTypeWidgetProvider.updateWidget(MainActivity.this);
 					}
 				});
+	}
+
+	@Override
+	protected void onResume() {
+		((RadioGroup)findViewById(R.id.radioGroupMannerModeSetting)).check(AppPreference.loadMannerModeId(this));
+		super.onResume();
 	}
 
 	@Override

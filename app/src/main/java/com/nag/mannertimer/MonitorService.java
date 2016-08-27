@@ -19,11 +19,11 @@ public class MonitorService extends Service {
 	private int id = 0;
 
 	public static boolean isNotifyOnReceiveCall(Context context){
-		return PreferenceHelper.getInstance(context).getBoolean(PREF_NOTIFY_ON_RECEIVE_CALL, false);
+		return PreferenceHelper.getInstance(context).getBoolean(context, PREF_NOTIFY_ON_RECEIVE_CALL, false);
 	}
 
 	public static void setNotifyOnReceiveCall(Context context, boolean flag){
-		PreferenceHelper.getInstance(context).putBoolean(PREF_NOTIFY_ON_RECEIVE_CALL, flag);
+		PreferenceHelper.getInstance(context).putBoolean(context, PREF_NOTIFY_ON_RECEIVE_CALL, flag);
 	}
 
 	public static void start(Context context){

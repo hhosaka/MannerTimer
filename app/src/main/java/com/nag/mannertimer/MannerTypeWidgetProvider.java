@@ -12,6 +12,7 @@ import android.widget.RemoteViews;
 
 public class MannerTypeWidgetProvider extends AppWidgetProvider {
 	private static final String ACTION_INCREASE_MANNER_MODE = "ACTION_INCREASE_MANNER_MODE";
+	private static final String ACTION_UPDATE_WIDGET = "UPDATE_WIDGET";
 
 	public static class WidgetIntentReceiver extends BroadcastReceiver {
 		@Override
@@ -26,14 +27,27 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 		return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 	}
 
-	private static String getLabel(int id){
+	private static int getIcon(int id){
 		switch(id){
 			case R.id.radioMannerModeVibrate:
-				return "Vibrate";
+				return R.drawable.icon_vaibation;
 			case R.id.radioMannerModeVibrateNoSilent:
-				return "Vibrate No Silent";
+				return R.drawable.icon_vaibration_no_silent;
 			case R.id.radioMannerModeSilent:
-				return "Silent";
+				return R.drawable.icon_silent;
+			default:
+				throw new UnsupportedOperationException();
+		}
+	}
+
+	private static String getLabel(Context context, int id){
+		switch(id){
+			case R.id.radioMannerModeVibrate:
+				return context.getString(R.string.label_manner_vibrate);
+			case R.id.radioMannerModeVibrateNoSilent:
+				return context.getString(R.string.label_manner_vibrate_no_silent);
+			case R.id.radioMannerModeSilent:
+				return context.getString(R.string.label_manner_silent);
 			default:
 				throw new UnsupportedOperationException();
 		}
@@ -45,16 +59,17 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
     	RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
     	remoteViews.setOnClickPendingIntent(R.id.textViewWidget, pi);
 		remoteViews.setOnClickPendingIntent(R.id.buttonWidget, pi);
-		remoteViews.setTextViewText(R.id.textViewWidget, getLabel(AppPreference.loadMannerModeId(context)));
+		remoteViews.setTextViewText(R.id.textViewWidget, getLabel(context, AppPreference.loadMannerModeId(context)));
+		//remoteViews.setImageViewResource(R.id.buttonWidget, getIcon(AppPreference.loadMannerModeId(context)));
     	appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
     }
 
 //	private PendingIntent buildShowActivityIntent(Context context){
 //		return PendingIntent.getActivity(context, 0, new Intent(context, TimerSelectorParentActivity.class), 0);
 //	}
-	public static void handleReceive(Context context, Intent intent){
+	public static void handleReceive(Context context, Intent intent) {
 		if (intent.getAction().equals(ACTION_INCREASE_MANNER_MODE)) {
-			switch(AppPreference.loadMannerModeId(context)){
+			switch (AppPreference.loadMannerModeId(context)) {
 				case R.id.radioMannerModeVibrate:
 					AppPreference.saveMannerModeId(context, R.id.radioMannerModeVibrateNoSilent);
 					break;
@@ -67,10 +82,15 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 				default:
 					throw new UnsupportedOperationException();
 			}
-		}
 			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
-			remoteViews.setTextViewText(R.id.textViewWidget, getLabel(AppPreference.loadMannerModeId(context)));
+			remoteViews.setTextViewText(R.id.textViewWidget, getLabel(context, AppPreference.loadMannerModeId(context)));
 			pushWidgetUpdate(context, remoteViews);
+		}
+		if (intent.getAction().equals(ACTION_UPDATE_WIDGET)) {
+			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.manner_type_widget);
+			remoteViews.setTextViewText(R.id.textViewWidget, getLabel(context, AppPreference.loadMannerModeId(context)));
+			pushWidgetUpdate(context, remoteViews);
+		}
 //		}else if (intent.getAction().equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
 //			Executor.update(context, intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1));
 //		}
@@ -88,9 +108,9 @@ public class MannerTypeWidgetProvider extends AppWidgetProvider {
 //		return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 //	}
 
-//	public static void updateWidget(Context context){
-//		Intent intent = new Intent();
-//		intent.setAction(ACTION_UPDATE_WIDGET);
-//		context.sendBroadcast(intent);
-//	}
+	public static void updateWidget(Context context){
+		Intent intent = new Intent();
+		intent.setAction(ACTION_UPDATE_WIDGET);
+		context.sendBroadcast(intent);
+	}
 }

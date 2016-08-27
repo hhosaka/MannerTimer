@@ -68,7 +68,7 @@ class TimerSelector implements OnClickListener {
 
 	public static void setCustomTime(final Context context){
 		final EditText edit = new EditText(context);
-		edit.setText(Integer.toString(PreferenceHelper.getInstance(context).getInt(PREF_CUSTOM_TIME, 60)));
+		edit.setText(Integer.toString(PreferenceHelper.getInstance(context).getInt(context, PREF_CUSTOM_TIME, 60)));
 		edit.setInputType(InputType.TYPE_CLASS_NUMBER);
 		new AlertDialog.Builder(context)
 				.setTitle(context.getString(R.string.action_custom_time_explanation))
@@ -77,7 +77,7 @@ class TimerSelector implements OnClickListener {
 					public void onClick(DialogInterface dialog, int which) {
 						int custom_time = Integer.parseInt(edit.getText().toString());
 						if(custom_time > 0){
-							PreferenceHelper.getInstance(context).putInt(PREF_CUSTOM_TIME, custom_time);
+							PreferenceHelper.getInstance(context).putInt(context, PREF_CUSTOM_TIME, custom_time);
 						}
 					}
 				}))
@@ -140,7 +140,7 @@ class TimerSelector implements OnClickListener {
 
 	public void showDialog(final View v, final Activity activity, final Button button) {
 		final Context context = v.getContext();
-		int custom_time = PreferenceHelper.getInstance(context).getInt(PREF_CUSTOM_TIME, 60);
+		int custom_time = PreferenceHelper.getInstance(context).getInt(context, PREF_CUSTOM_TIME, 60);
 		labels[labels.length-1] = new LabelImpl(context.getString(R.string.label_smart_timer_custom_prefix) + custom_time + context.getString(R.string.label_smart_timer_custom_postfix),custom_time);
 		new AlertDialog.Builder(context)
 				.setTitle(context.getString(R.string.label_smart_timer))
