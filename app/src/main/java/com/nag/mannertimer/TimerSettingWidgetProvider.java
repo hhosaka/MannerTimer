@@ -8,7 +8,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 public class TimerSettingWidgetProvider extends AppWidgetProvider {
 	private static final String ACTION_UPDATE_WIDGET = "UPDATE_WIDGET";
@@ -30,7 +32,9 @@ public class TimerSettingWidgetProvider extends AppWidgetProvider {
     }
 
 	private PendingIntent buildShowActivityIntent(Context context){
-		return PendingIntent.getActivity(context, 0, new Intent(context, TimerSelectorParentActivity.class), 0);
+		Intent intent = new Intent(context, TimerSelectorParentActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return PendingIntent.getActivity(context, 0, intent, 0);
 	}
 	public static void handleReceive(Context context, Intent intent){
 		if (intent.getAction().equals(ACTION_UPDATE_WIDGET)) {
